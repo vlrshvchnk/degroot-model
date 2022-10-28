@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" media="screen" href="page.css">
+<link type="text/css" rel="stylesheet" media="screen" href="chart.css">
+</head>
+<body>
+<b> <font size="24">Модель Де Гроота</font> </b> <br>
+<br>
+
+<table>
+  <thead>
+    <tr>
+		<th>Мнения</th>
+		<th><font color="red">Доверие 1-го агента</font></th>
+		<th><font color="orange">Доверие 2-го агента</font></th>
+		<th><font color="green">Доверие 3-го агента</font></th>
+		<th><font color="blue">Доверие 4-го агента</font></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> 
+<th> <font color="red">1-го агента</font><input type="range" min="0" max="1" step="0.001" id="x1" value=1><br>
+<font color="orange">2-го агента</font> <input type="range" min="0" max="1" step="0.001" id="x2" value=0.6><br> 
+<font color="green">3-го агента</font><input type="range" min="0" max="1" step="0.001" id="x3" value=0.4><br> 
+<font color="blue">4-го агента</font> <input type="range" min="0" max="1" step="0.001" id="x4"value=0> <br> 
+<br>
+</th>
+
+<th> к себе <input type="range" min="0" max="1" step="0.1" id="a11" value=1><br>
+ко 2-ому агенту <input type="range" min="0" max="1" step="0.1" id="a12" value=0><br> 
+к 3-ему агенту <input type="range" min="0" max="1" step="0.1" id="a13" value=0><br> 
+к 4-ому агенту <input type="range" min="0" max="1" step="0.1" id="a14"value=0> <br> 
+<input type="button" id="b1" value="Нормировать"></th>
+
+<script>
+ document.getElementById("b1").onclick = function(){
+    var s= Number(document.getElementById("a11").value) + Number(document.getElementById("a12").value)+Number(document.getElementById("a13").value)+Number(document.getElementById("a14").value);
+	document.getElementById("a11").value= document.getElementById("a11").value/s;
+	document.getElementById("a12").value= document.getElementById("a12").value/s;
+	document.getElementById("a13").value= document.getElementById("a13").value/s;
+	document.getElementById("a14").value= document.getElementById("a14").value/s;
+ };
+</script>
+
+<th> к 1-ому агенту <input type="range" min="0" max="1" step="0.001" id="a21" value=0><br>
+к себе <input type="range" min="0" max="1" step="0.001" id="a22" value=1><br> 
+к 3-ему агенту <input type="range" min="0" max="1" step="0.001" id="a23" value=0><br> 
+к 4-ому агенту <input type="range" min="0" max="1" step="0.001" id="a24"value=0> <br> 
+<input type="button" id="b2" value="Нормировать"></th>
+
+<script>
+ document.getElementById("b2").onclick = function(){
+    var s= Number(document.getElementById("a21").value) + Number(document.getElementById("a22").value)+Number(document.getElementById("a23").value)+Number(document.getElementById("a24").value);
+	document.getElementById("a21").value= document.getElementById("a21").value/s;
+	document.getElementById("a22").value= document.getElementById("a22").value/s;
+	document.getElementById("a23").value= document.getElementById("a23").value/s;
+	document.getElementById("a24").value= document.getElementById("a24").value/s;
+ };
+</script>
+
+
+<th> к 1-ому агенту <input type="range" min="0" max="1" step="0.001" id="a31" value=0><br>
+ко 2-ому агенту <input type="range" min="0" max="1" step="0.001" id="a32" value=0><br> 
+к себе <input type="range" min="0" max="1" step="0.001" id="a33" value=1><br> 
+к 4-ому агенту <input type="range" min="0" max="1" step="0.001" id="a34"value=0> <br> 
+<input type="button" id="b3" value="Нормировать"></th>
+
+<script>
+ document.getElementById("b3").onclick = function(){
+    var s= Number(document.getElementById("a31").value) + Number(document.getElementById("a32").value)+Number(document.getElementById("a33").value)+Number(document.getElementById("a34").value);
+	document.getElementById("a31").value= document.getElementById("a31").value/s;
+	document.getElementById("a32").value= document.getElementById("a32").value/s;
+	document.getElementById("a33").value= document.getElementById("a33").value/s;
+	document.getElementById("a34").value= document.getElementById("a34").value/s;
+ };
+</script>
+<th> к 1-ому агенту <input type="range" min="0" max="1" step="0.001" id="a41" value=0><br>
+ко 2-ому агенту <input type="range" min="0" max="1" step="0.001" id="a42" value=0><br> 
+к 3-ему агенту <input type="range" min="0" max="1" step="0.001" id="a43" value=0><br> 
+к себе <input type="range" min="0" max="1" step="0.001" id="a44"value=1> <br>
+<input type="button" id="b4" value="Нормировать"> </th>
+<script>
+ document.getElementById("b4").onclick = function(){
+    var s= Number(document.getElementById("a41").value) + Number(document.getElementById("a42").value)+Number(document.getElementById("a43").value)+Number(document.getElementById("a44").value);
+	document.getElementById("a41").value= document.getElementById("a41").value/s;
+	document.getElementById("a42").value= document.getElementById("a42").value/s;
+	document.getElementById("a43").value= document.getElementById("a43").value/s;
+	document.getElementById("a44").value= document.getElementById("a44").value/s;
+ };
+</script>
+
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<input type="button" id="b" value="Запустить">
+
+<br>
+<br>
+<script>
+ document.getElementById("b").onclick = function(){
+    doWork(document.getElementById("x1").value, document.getElementById("x2").value, document.getElementById("x3").value, document.getElementById("x4").value);
+ };
+</script>
+
+
+<div id="vis"></div>
+<script src="http://d3js.org/d3.v2.min.js"></script>
+<script src="sine.js"></script>
+</body>
+</html>
